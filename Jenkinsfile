@@ -1,23 +1,18 @@
 pipeline {
     agent any
     environment {
-        APP_NAME = 'my-app'
+        APP_NAME = 'clock-app'
         DOCKERHUB_REGISTRY = 'docker.io'
         DOCKERHUB_REPOSITORY = 'ryankim5100/testjenkins'
         K8S_NAMESPACE = 'default'
-        K8S_DEPLOYMENT_NAME = 'my-jenkins-test-app'
-        K8S_SERVICE_NAME = 'my-jenkins-test-app'
+        K8S_DEPLOYMENT_NAME = 'clock-app-deployment'
+        K8S_SERVICE_NAME = 'clock-app-service'
         KUBECONFIG = '/var/lib/jenkins/.kube/config'
     }
     stages {
         stage('Source Checkout') {
             steps {
-                git 'https://github.com/my-org/my-app.git'
-            }
-        }
-        stage('Build') {
-            steps {
-                sh 'mvn package'
+                git 'https://github.com/ryan-kim21/Test-build-23-04.git'
             }
         }
         stage('Docker Build') {
